@@ -3,7 +3,7 @@
 /**
  * @author Theodor Diaconu
  */
-namespace TD\FixtureHelper\BaseFixture;
+namespace TD\FixtureHelper;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

@@ -1,0 +1,19 @@
+{
+    "name": "theodordiaconu/doctrine-fixture-helper",
+    "description": "Helping you work with Doctrine Fixtures much faster",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Theodor Diaconu",
+            "email": "diaconu.theodor@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "TD\\FixtureHelper\\": ["src/"] }
+    },
+    "require": {
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
+        "fzaninotto/faker": "1.5.*@dev",
+        "php": ">=5.4"
+    }
+}

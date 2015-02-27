@@ -1,7 +1,8 @@
 Doctrine Fixture Helper
 ==============================================
 
-The main idea of this is to decouple your DataFixture classes and avoid spaghetti.
+The main idea of this is to decouple your DataFixture classes to avoid spaghetti,
+and write elegant code by using a bit of functional PHP.
 
 ```
 composer require theodordiaconu/doctrine-fixture-helper dev-master
@@ -26,10 +27,6 @@ class Configuration
     public static $jobTitles = [
         'Manager', 'Customer Relation', 'Web-Consultant', 'Web Architect', 'Loan Provider', 'Boss'
     ];
-
-    public static $documentTypes = [
-        'Passport', 'Driver\'s License', 'Tax Return', 'Tax Filing', 'Bank Statement', 'Mortage Contract', 'Other'
-    ];
 }
 ```
 
@@ -46,6 +43,8 @@ class LoadUserData extends BaseFixture
         $this->iterator(Configuration::USERS, function($index) {
             $user = new User();
             $user->setFirstname($this->faker->firstname());
+            $user->setLastname($this->faker->lastname());
+            $user->setJob($this->faker->randomElement(Configuration::$jobTitles))
             
             return $user; // you must return the object.
         }, 'user'); // note: user is our reference name, the script will create user-1, user-2, user-3 accordingly.
@@ -66,6 +65,8 @@ Now let's create 3 blogs for each user
         $this->iterator('user', function(User $user) {
             $this->iterator(Configuration::BLOG_POSTS_PER_USER, function($index) use ($user) {
                 $blog = new BlogPost($user);
+                $blog->setTitle($this->faker->sentence());
+                $blog->setText($this->faker->text());
                 
                 return $blog;
             }, 'post')
@@ -100,4 +101,7 @@ You can also make use of other helper methods:
 getObjects('user') // will return all users
 getReference('user-1') // will return user-1
 ```
+
+
+This requires faker: https://github.com/fzaninotto/Faker
 

@@ -60,6 +60,7 @@ class LoadUserData extends BaseFixture
 Now let's create 3 blogs for each user
 
 ```
+    // in LoadBlogPostData.php
     public function doLoad()
     {
         $this->iterator('user', function(User $user) {
@@ -78,6 +79,7 @@ Now let's create 3 blogs for each user
 Now let's leave comments to the blog posts:
 
 ```
+    // in LoadCommentData.php
     public function doLoad()
     {
         $this->iterator('post', function(BlogPost $post) {
@@ -98,8 +100,9 @@ As you can see we have written this with very few lines of code. And the sky is 
 You can also make use of other helper methods:
 
 ```
-getObjects('user') // will return all users
-getReference('user-1') // will return user-1
+$this->getObjects('user') // will return all users
+$this->getReference('user-1') // will return user-1
+$this->container->get('my_service') // will return the service
 ```
 
 

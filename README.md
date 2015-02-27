@@ -106,5 +106,5 @@ $this->container->get('my_service') // will return the service
 ```
 
 
-This requires faker: https://github.com/fzaninotto/Faker
+Take a look at faker helper methods: https://github.com/fzaninotto/Faker
 

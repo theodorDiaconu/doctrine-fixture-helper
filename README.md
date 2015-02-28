@@ -132,7 +132,7 @@ $this->manager // ObjectManager
 $this->faker // faker
 $this->getObjects('user') // will return all users
 $this->getReference('user-1') // will return user-1
-$this->$this->getRandomObject('user') // will return a random element from user collection
+$this->getRandomObject('user') // will return a random element from user collection
 ```
 
 

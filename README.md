@@ -20,6 +20,8 @@ Add the fixtures bundle to AppKernel.php:
 new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 ```
 
+Usage
+================================================
 To understand how it works, let's take the following scenario:
 
 - You want to generate a bunch of users
@@ -79,7 +81,7 @@ Now let's create some blog posts for each user
     // in LoadBlogPostData.php
     public function doLoad()
     {
-        $this->iterator('user', function(User $user) {
+        $this->iterator('user', function(User $user) { // this will iterate through all existing users
             $this->iterator(Configuration::BLOG_POSTS_PER_USER, function($index) use ($user) {
                 $blog = new BlogPost($user);
                 $blog->setTitle($this->faker->sentence());
@@ -111,15 +113,25 @@ Now let's leave comments to the blog posts:
     // update getOrder
 ```
 
+Conclusion
+========================================
+As you might have already noticed, if the iterator gets an integer as the first parameter, it iterates one by one until that limit is reached,
+if it gets a string it assumes that you want to iterate through a collection of pre-existing object references.
+
 As you can see we have written this with very few lines of code. And the sky is the limit. This will help you create very complex
 and interconnected entities.
 
-You can also make use of other helper methods:
+
+
+API
+========================================
 
 ```
+$this->container // container
+$this->manager // ObjectManager
+$this->faker // faker
 $this->getObjects('user') // will return all users
 $this->getReference('user-1') // will return user-1
-$this->container->get('my_service') // will return the service
 $this->$this->getRandomObject('user') // will return a random element from user collection
 ```
 

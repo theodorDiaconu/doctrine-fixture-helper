@@ -4,8 +4,20 @@ Doctrine Fixture Helper
 The main idea of this is to decouple your DataFixture classes to avoid spaghetti,
 and write elegant code by using a bit of functional PHP.
 
+This works with both ODM and ORM of Doctrine.
+
+
+Installation
+==============================================
+
 ```
 composer require theodordiaconu/doctrine-fixture-helper dev-master
+```
+
+Add the fixtures bundle to AppKernel.php:
+
+```
+new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 ```
 
 To understand how it works, let's take the following scenario:
@@ -40,11 +52,15 @@ class LoadUserData extends BaseFixture
 {
     public function doLoad()
     {
+        $this->userService = $this->container->get('user_service');
+        
         $this->iterator(Configuration::USERS, function($index) {
             $user = new User();
             $user->setFirstname($this->faker->firstname());
             $user->setLastname($this->faker->lastname());
-            $user->setJob($this->faker->randomElement(Configuration::$jobTitles))
+            $user->setJob($this->faker->randomElement(Configuration::$jobTitles));
+            
+            $this->userService->doSomething($user);
             
             return $user; // you must return the object.
         }, 'user'); // note: user is our reference name, the script will create user-1, user-2, user-3 accordingly.
@@ -57,7 +73,7 @@ class LoadUserData extends BaseFixture
 }
 ```
 
-Now let's create 3 blogs for each user
+Now let's create some blog posts for each user
 
 ```
     // in LoadBlogPostData.php
@@ -96,6 +112,7 @@ Now let's leave comments to the blog posts:
 ```
 
 As you can see we have written this with very few lines of code. And the sky is the limit. This will help you create very complex
+and interconnected entities.
 
 You can also make use of other helper methods:
 
@@ -103,6 +120,7 @@ You can also make use of other helper methods:
 $this->getObjects('user') // will return all users
 $this->getReference('user-1') // will return user-1
 $this->container->get('my_service') // will return the service
+$this->$this->getRandomObject('user') // will return a random element from user collection
 ```
 
 

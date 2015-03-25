@@ -87,7 +87,7 @@ class BaseFixture extends AbstractFixture implements OrderedFixtureInterface, Co
      */
     protected function formatTime($time)
     {
-        return number_format($time, 5, '.');
+        return number_format($time, 5, '.', ',');
     }
 
     /**

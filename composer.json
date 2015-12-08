@@ -12,7 +12,7 @@
         "psr-4": { "TD\\FixtureHelper\\": ["src/"] }
     },
     "require": {
-        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev",
+        "doctrine/doctrine-fixtures-bundle": "2.3.0",
         "fzaninotto/faker": "1.5.*@dev",
         "php": ">=5.4"
     }

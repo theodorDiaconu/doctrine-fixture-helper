@@ -102,7 +102,7 @@ Now let's leave comments to the blog posts:
     {
         $this->iterator('post', function(BlogPost $post) {
             $this->iterator(Configuration::COMMENTS_PER_BLOG_POST, function($index) use ($post) {
-                $comment = new Comment($this->getRandomObject('user');
+                $comment = new Comment($this->getRandomObject('user'));
                 $comment->setPost($post);
                 
                 return $comment;

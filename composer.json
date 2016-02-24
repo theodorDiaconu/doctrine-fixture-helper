@@ -11,7 +11,7 @@
     "autoload": {
         "psr-4": { "TD\\FixtureHelper\\": ["src/"] }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "doctrine/doctrine-fixtures-bundle": "2.3.0",
         "fzaninotto/faker": "1.5.*@dev",
